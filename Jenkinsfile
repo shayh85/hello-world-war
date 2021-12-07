@@ -14,7 +14,7 @@ pipeline {
         }
         stage('SonarCube-test') {
             steps {
-            sh mvn verify sonar:sonar
+            sh 'mvn verify sonar:sonar'
             }
         }
             stage('docker build') {
