@@ -14,18 +14,17 @@ pipeline {
         }
         stage('SonarCube-test') {
             steps {
-                 sh '''export SONAR_TOKEN="eaad333aa9aafca011fb5a8eb97dbc99447ddb1b"
-                 mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=module6'''
+            sh mvn verify sonar:sonar
             }
         }
             stage('docker build') {
                  steps {
-        sh 'docker build -t hww-shalom:${BUILD_NUMBER} .'
+        sh 'docker build -t module6-shayhelman:${BUILD_NUMBER} .'
       }
     }
       stage('docker tag') {
          steps {
-        sh 'docker tag hww-shalom:${BUILD_NUMBER} localhost:8123/hww-shalom:${BUILD_NUMBER}'
+        sh 'docker tag hww-shalom:${BUILD_NUMBER} localhost:8123/module6-shayhelman:${BUILD_NUMBER}'
       }
     }
         stage('docker push') {
