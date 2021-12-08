@@ -15,8 +15,7 @@ pipeline {
         stage('SonarCube-test') {
             steps {
                 
-             sh '''export SONAR_TOKEN="31a04982b7dafc2dcbea3634e10e1d9da89de800"
-                 mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=module6'''
+             sh 'mvn verify sonar:sonar'
             }
         }
             stage('docker build') {
